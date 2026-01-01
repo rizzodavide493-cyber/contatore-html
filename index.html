@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Contatore</title>
+
+    <!-- Icona -->
+    <link rel="apple-touch-icon" href="icon.png">
+
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            margin-top: 100px;
+        }
+        #numero {
+            font-size: 50px;
+            margin-bottom: 30px;
+        }
+        button {
+            font-size: 25px;
+            padding: 10px 20px;
+            margin: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="numero">0.0</div>
+
+    <button onclick="avvia()">Avvia</button>
+    <button onclick="ferma()">Ferma</button>
+    <button onclick="resetta()">Reset</button>
+
+    <script>
+        let valore = 0.0;
+        let timer = null;
+
+        function avvia() {
+            if (!timer) { // se non è già in esecuzione
+                timer = setInterval(() => {
+                    document.getElementById("numero").innerText = valore.toFixed(1);
+                    valore += 0.2;
+                }, 500);
+            }
+        }
+
+        function ferma() {
+            if (timer) {
+                clearInterval(timer);
+                timer = null;
+            }
+        }
+
+        function resetta() {
+            ferma(); // ferma prima se è in esecuzione
+            valore = 0.0;
+            document.getElementById("numero").innerText = valore.toFixed(1);
+        }
+    </script>
+
+</body>
+</html>
+
